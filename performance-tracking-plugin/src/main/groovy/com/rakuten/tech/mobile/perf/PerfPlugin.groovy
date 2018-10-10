@@ -51,6 +51,6 @@ class PerfPlugin implements Plugin<Project> {
       }
     }
 
-    project.dependencies.compile runtime
+    //project.dependencies.compile runtime
   }
 }

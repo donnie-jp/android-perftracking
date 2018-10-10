@@ -16,7 +16,7 @@ public class WebViewClientMixin extends WebViewClientBase {
   @ReplaceMethod
   public void onPageStarted(WebView view, String url, Bitmap favicon) {
     Tracker.prolongMetric();
-    com_rakuten_tech_mobile_perf_page_trackingId = Tracker.startUrl(url, "VIEW");
+    com_rakuten_tech_mobile_perf_page_trackingId = Tracker.startUrl(url, com_rakuten_tech_mobile_perf_requestMethod);
     onPageStarted(view, url, favicon);
   }
 
@@ -38,5 +38,10 @@ public class WebViewClientMixin extends WebViewClientBase {
     com_rakuten_tech_mobile_perf_page_trackingId = 0;
     onReceivedHttpError(view, request, errorResponse);
   }
-}
 
+  @ReplaceMethod
+  public WebResourceResponse shouldInterceptRequest (WebView view, WebResourceRequest request) {
+    com_rakuten_tech_mobile_perf_requestMethod = request.getMethod();
+    return shouldInterceptRequest(view, request);
+  }
+}

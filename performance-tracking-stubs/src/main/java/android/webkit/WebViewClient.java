@@ -14,4 +14,9 @@ public class WebViewClient {
       WebResourceResponse errorResponse) {
   }
 
+  public WebResourceResponse shouldInterceptRequest (WebView view,
+                                                     WebResourceRequest request) {
+    return null;
+  }
+
 }
